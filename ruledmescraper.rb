@@ -1,6 +1,3 @@
-require 'pry'
-
-
 require 'nokogiri'
 require 'open-uri'
 
@@ -37,29 +34,21 @@ class RuledMeScraper
 
             ingredients = content.css('#zlrecipe-ingredients-list').children.collect {|li| li.text.gsub('Â', '')}
             instructions = content.css('#zlrecipe-instructions-list').children.collect {|li| li.text.gsub('Â', '')}
-            nutrition_facts = content.css('tbody').children.collect {|tr| tr.collect {|td| td.text.gsub('Â', '')}}
+
+            # nutrition_facts = content.css('table tbody').children.collect {|tr| tr.collect {|td| td.text.gsub('Â', '')}}
+            nutrition_facts = nil
+
             notes = content.css('.notes').first.text.gsub('Â', '') unless content.css('.notes').first.nil?
             summary = content.css('.summary').collect {|summary_p|
                 unless summary_p.nil?
                     summary_p.text.gsub('Â', '')
                 end
             }.join('\n')
-            prep_time = content.css('#zlrecipe-prep-time span').first.text.gsub('Â', '') unless content.css('#zlrecipe-prep-time span').nil?
+            prep_time = content.css('#zlrecipe-prep-time span').first.text.gsub('Â', '') unless content.css('#zlrecipe-prep-time span').first.nil?
             cooking_time = (content.css('#zlrecipe-total-time span').first.text.to_i - content.css('#zlrecipe-prep-time span').first.text.to_i).to_s unless content.css('#zlrecipe-total-time span').first.nil? || content.css('#zlrecipe-prep-time span').first.nil?
 
             unless ingredients.nil? || instructions.nil?
-                recipe = Recipe.new(
-                    name: name,
-                    date_posted: date_posted,
-                    url: url,
-                    ingredients: ingredients,
-                    instructions: instructions,
-                    nutrition_facts: nutrition_facts,
-                    notes: notes,
-                    summary: summary,
-                    prep_time: prep_time,
-                    cooking_time: cooking_time
-                )
+                Recipe.new(name, date_posted, url, ingredients, instructions, nutrition_facts, notes, summary, prep_time, cooking_time)
             end
         end
         return
