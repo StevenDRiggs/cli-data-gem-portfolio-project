@@ -6,21 +6,10 @@ any images or other distracting web content.
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+Clone or download all files into the directory of your choice.
+In your terminal, navigate into the cli-data-gem-portfolio-project folder.
+Run bundle install.
+Run bin/RuledMeCLI to start the program.
 
 ## Authors
 
