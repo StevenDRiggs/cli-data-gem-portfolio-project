@@ -15,6 +15,10 @@ Run bin/RuledMeCLI to start the program.
 
 * **Steven Riggs** - *Initial work* - (https://github.com/StevenDRiggs)
 
+## Contributors
+
+If you would like to contribute to this project, submit a pull request via the button above.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
