@@ -45,10 +45,10 @@ class RuledMeScraper
                 end
             }.join('\n')
             prep_time = content.css('#zlrecipe-prep-time span').first.text.gsub('Â', '') unless content.css('#zlrecipe-prep-time span').first.nil?
-            cooking_time = (content.css('#zlrecipe-total-time span').first.text.to_i - content.css('#zlrecipe-prep-time span').first.text.to_i).to_s unless content.css('#zlrecipe-total-time span').first.nil? || content.css('#zlrecipe-prep-time span').first.nil?
+            total_time = content.css('#zlrecipe-total-time span').first.text.gsub('Â', '') unless content.css('#zlrecipe-total-time span').first.nil?
 
             unless ingredients.nil? || instructions.nil?
-                Recipe.new(name, date_posted, url, ingredients, instructions, nutrition_facts, notes, summary, prep_time, cooking_time)
+                Recipe.new(name, date_posted, url, ingredients, instructions, nutrition_facts, notes, summary, prep_time, total_time)
             end
         end
         return
