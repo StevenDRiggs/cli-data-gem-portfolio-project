@@ -102,6 +102,3 @@ class KetoRecipesCLI
     end
 
 end
-
-
-KetoRecipesCLI.new

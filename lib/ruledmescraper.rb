@@ -32,8 +32,8 @@ class RuledMeScraper
         unless content.nil?
             name = content.css('#zlrecipe-title').text.gsub('Â', '')
 
-            ingredients = content.css('#zlrecipe-ingredients-list').children.collect {|li| li.text.gsub('Â', '')}
-            instructions = content.css('#zlrecipe-instructions-list').children.collect {|li| li.text.gsub('Â', '')}
+            ingredients = content.css('#zlrecipe-ingredients-list').children.collect {|li| li.text.gsub('Â', '').gsub('½', '1/2').gsub('¼', '1/4').gsub('¾', '3/4')}
+            instructions = content.css('#zlrecipe-instructions-list').children.collect {|li| li.text.gsub('Â', '').gsub('½', '1/2').gsub('¼', '1/4').gsub('¾', '3/4')}
 
             # nutrition_facts = content.css('table tbody').children.collect {|tr| tr.collect {|td| td.text.gsub('Â', '')}}
             nutrition_facts = nil
